@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>node的web服务器</title>
+		<script src="lib/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="text">
+			<div id="text">
+				服务器实例
+			</div>
+		</div>
+		<script type="text/javascript">
+			$.ajax({
+				type:"post",
+				url:"/api/get_all_users",
+				success:function(res){
+					console.log(res);
+				}
+			});
+		</script>
+	</body>
+</html>

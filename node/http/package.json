@@ -1,0 +1,24 @@
+{
+  "name": "node-ajax",
+  "version": "1.0.0",
+  "description": "this is a demo of node htto as web ajax!",
+  "main": "index.js",
+  "dependencies": {
+    "mysql": "^2.15.0"
+  },
+  "devDependencies": {
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "request": "^2.83.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "http",
+    "request"
+  ],
+  "author": "chenyang",
+  "license": "ISC"
+}
