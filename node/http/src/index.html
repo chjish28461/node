@@ -8,13 +8,29 @@
 	<body>
 		<div id="text">服务器实例</div>
 		<script type="text/javascript">
+			let data={"name":"chenyang","age":24};
 			$.ajax({
-				type:"get",
+				type:"post",
 				url:"/api/get_all_users",
-				success:function(res){
+				data:data,
+				success:(res)=>{
 					console.log(res);
 				}
 			});
+//			//使用fetch发送get请求
+//			fetch('/api/get_all_users').then((res)=>res.json()).then((res)=>{
+//				console.log(res);
+//			})
+			//使用fetch发送post请求
+			fetch('/api/get_all_users',{
+				method: 'post',
+		        headers: {
+		          'Content-Type': 'application/json'
+		        },
+				body:JSON.stringify(data)
+			}).then((res)=>res.json()).then((res)=>{
+				console.log(res);
+			})
 		</script>
 	</body>
 </html>
