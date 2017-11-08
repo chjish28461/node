@@ -1,6 +1,3 @@
-//const expres=require('express');
-//var express = require('express');
-//var router = express.Router()
 let APIUsers={};
 APIUsers.data=[
     { id: 100, name: '张三丰', pass:'zsf', age: 20, ico:'/imgs/0.jpg', en_name:'ZhangSanFeng', money:100 },
