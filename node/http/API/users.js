@@ -9,7 +9,7 @@ APIUsers.api={
 		method:"get|post",
 		handle:function(req,res){
 			let result=APIUsers.data;
-			console.log(req.body.name);
+			console.log(req.body.name);//req.body是接收到的前端参数
 			res.send(result);
 		}
 	}
