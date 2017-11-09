@@ -28,7 +28,7 @@ APIUsers.handle=(req,res)=>{
 	var pathname = req._parsedUrl.pathname, apiname = pathname.replace('/api',''),
         Url = APIUsers.api[apiname], method = req.method.toLowerCase();
     if (Url && Url.method.split("|").toString().indexOf(method)>-1) {
-    	let logMes=`${dateUtil.getDate()}\r\n正在处理前端请求路径:${apiname};\r\n请求参数:\r\n${JSON.stringify(req.body)}!\r\n\r\n`;
+    	let logMes=`${dateUtil.getDate()}\r\n正在处理前端请求路径:${apiname};\r\n请求参数:${JSON.stringify(req.body)}!\r\n\r\n`;
 		fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 			if(err) throw err;
 			else console.log('The logMes has been saved!')
