@@ -3,4 +3,4 @@
 1.使用git克隆至本地文件夹，git clone https://github.com/chjish28461/MyStudy/node/http
 2.在cmd命令行进入本地文件夹
 3.npm install(安装项目依赖)
-4.启动项目(npm run start)
+4.启动项目(npm run start) kk
