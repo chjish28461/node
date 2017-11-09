@@ -22,7 +22,7 @@ class mysqlUtil{
 		});
 		this.connection.connect();
 		let logMes=`${dateUtil.getDate()}链接mysql成功!\r\n\r\n`;
-		fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+		fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 			if(err) throw err;
 			else console.log('The logMes has been saved!')
 		});
@@ -43,16 +43,16 @@ class mysqlUtil{
 			this.connection.query(sql[i],(err, res)=>{
 			    if(err){
 			    	//sql执行失败打印信息
-			        let logMes=`${dateUtil.getDate()}[SELECT ERROR]${err.message}\r\n\r\n`;
-					fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+			        let logMes=`${dateUtil.getDate()}\r\n[SELECT ERROR]\r\n${err.message}\r\n\r\n`;
+					fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 						if(err) throw err;
 						else console.log('The logMes has been saved!')
 					});
 			        return;
 			    }else{
 			    	//打印sql执行结果
-			    	let logMes=`${dateUtil.getDate()}${res}\r\n\r\n`;
-					fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+			    	let logMes=`${dateUtil.getDate()}\r\n数据已插入:\r\n${JSON.stringify(res)}\r\n\r\n`;
+					fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 						if(err) throw err;
 						else console.log('The logMes has been saved!')
 					});
@@ -67,7 +67,7 @@ class mysqlUtil{
 	closeMysql(){
 		this.connection.end();
 		let logMes=`${dateUtil.getDate()}关闭连接池!\r\n\r\n`;
-		fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+		fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 			if(err) throw err;
 			else console.log('The logMes has been saved!')
 		});

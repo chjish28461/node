@@ -15,8 +15,8 @@ APIUsers.api={
 		handle:function(req,res){
 			let result=APIUsers.data;
 			console.log(req.body.name);//req.body是接收到的前端参数
-			let logMes=`${dateUtil.getDate()}已向前端发送数据:${req.originalUrl.replace('/api','')}!\r\n\r\n`;
-			fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+			let logMes=`${dateUtil.getDate()}\r\n已向前端发送数据:\r\n${JSON.stringify(result)}!\r\n\r\n`;
+			fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 				if(err) throw err;
 				else console.log('The logMes has been saved!')
 			});
@@ -28,8 +28,8 @@ APIUsers.handle=(req,res)=>{
 	var pathname = req._parsedUrl.pathname, apiname = pathname.replace('/api',''),
         Url = APIUsers.api[apiname], method = req.method.toLowerCase();
     if (Url && Url.method.split("|").toString().indexOf(method)>-1) {
-    	let logMes=`${dateUtil.getDate()}正在处理前端请求:${apiname}!\r\n\r\n`;
-		fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+    	let logMes=`${dateUtil.getDate()}\r\n正在处理前端请求路径:${apiname};\r\n请求参数:\r\n${JSON.stringify(req.body)}!\r\n\r\n`;
+		fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 			if(err) throw err;
 			else console.log('The logMes has been saved!')
 		});
@@ -37,7 +37,7 @@ APIUsers.handle=(req,res)=>{
     } else {
         res.send({err:400});
         let logMes=`${dateUtil.getDate()}无法处理请求路径:${apiname}!\r\n\r\n`;
-		fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+		fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 			if(err) throw err;
 			else console.log('The logMes has been saved!')
 		});

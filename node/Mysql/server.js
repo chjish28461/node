@@ -45,7 +45,7 @@ app.use('/api',APIUsers.handle);
 const server=app.listen(2001,function(){
 	const port=server.address().port;
 	let logMes=`${dateUtil.getDate()}服务已启动,应用访问地址为:localhost:${port}\r\n\r\n`;
-	fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+	fs.appendFile(`./log/${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
 		if(err) throw err;
 		else console.log('The logMes has been saved!')
 	});
