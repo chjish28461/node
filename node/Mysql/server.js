@@ -8,6 +8,13 @@ const bodyParser = require('body-parser');
 const multer = require('multer'); // v1.0.5
 const upload = multer(); // for parsing multipart/form-data
 
+/*
+ * {params}
+ * host:mysql连接地址
+ * user:用户名
+ * password:用户密码
+ * database:表名
+ * */
 let mysqlUtil=new mysql({
     'host':'172.16.32.234',
     'user':'test',
