@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>node连接mysql实例</title>
+		<script src="lib/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="text">mysql实例</div>
+		<script type="text/javascript">
+			let data={"name":"chenyang","age":24};
+			$.ajax({
+				type:"post",
+				url:"/api/get_all_users",
+				data,
+				success:(res)=>{
+					console.log(res);
+				}
+			});
+//			//使用fetch发送get请求
+//			fetch('/api/get_all_users').then((res)=>res.json()).then((res)=>{
+//				console.log(res);
+//			})
+			//使用fetch发送post请求
+			fetch('/api/get_all_users',{
+				method: 'post',
+		        headers: {
+		          'Content-Type': 'application/json'
+		        },
+				body:JSON.stringify(data)
+			}).then((res)=>res.json()).then((res)=>{
+				console.log(res);
+			})
+		</script>
+	</body>
+</html>

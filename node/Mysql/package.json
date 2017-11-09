@@ -1,0 +1,26 @@
+{
+  "name": "mysql",
+  "version": "1.0.0",
+  "description": "this is a node-mysql demo!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chjish28461/MyStudy/Mysql"
+  },
+  "keywords": [
+    "node",
+    "mysql"
+  ],
+  "author": "chenyang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "multer": "^1.3.0",
+    "mysql": "^2.15.0"
+  }
+}
