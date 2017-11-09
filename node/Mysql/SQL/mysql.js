@@ -1,5 +1,8 @@
 //这里面写sql操作
 const mysql=require('mysql');
+const fs=require('fs');
+const dateUtils=require('../dateUtils/dateUtils');//转换时间对象为需要的格式工具
+let dateUtil=new dateUtils();
 
 class mysqlUtil{
 	constructor(config){
@@ -17,7 +20,11 @@ class mysqlUtil{
 		    'database':this.config.database
 		});
 		this.connection.connect();
-		console.log("链接mysql成功！");
+		let logMes=`${dateUtil.getDate()}链接mysql成功!\r\n\r\n`;
+		fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+			if(err) throw err;
+			else console.log('The logMes has been saved!')
+		});
 	}
 	//更新mysql方法
 	updataMysql(mysql){
@@ -35,11 +42,19 @@ class mysqlUtil{
 			this.connection.query(sql[i],(err, res)=>{
 			    if(err){
 			    	//sql执行失败打印信息
-			        console.log('[SELECT ERROR] - ',err.message);
+			        let logMes=`${dateUtil.getDate()}[SELECT ERROR]${err.message}\r\n\r\n`;
+					fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+						if(err) throw err;
+						else console.log('The logMes has been saved!')
+					});
 			        return;
 			    }else{
 			    	//打印sql执行结果
-			    	console.log(res);
+			    	let logMes=`${dateUtil.getDate()}${res}\r\n\r\n`;
+					fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+						if(err) throw err;
+						else console.log('The logMes has been saved!')
+					});
 			    }
 			    if(i==(len-1)){
 					this.closeMysql();
@@ -50,7 +65,11 @@ class mysqlUtil{
 	//关闭连接池
 	closeMysql(){
 		this.connection.end();
-		console.log("关闭连接池！")
+		let logMes=`${dateUtil.getDate()}关闭连接池!\r\n\r\n`;
+		fs.appendFile(`${dateUtil.fileName()}.txt`, logMes, 'utf8', function(err){
+			if(err) throw err;
+			else console.log('The logMes has been saved!')
+		});
 	}
 }
 module.exports=mysqlUtil;
