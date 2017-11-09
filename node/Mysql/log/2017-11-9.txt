@@ -1,0 +1,18 @@
+2017-11-9  17:59:0  链接mysql成功!
+
+2017-11-9  17:59:0  服务已启动,应用访问地址为:localhost:2001
+
+2017-11-9  17:59:0  
+数据已插入:
+{"fieldCount":0,"affectedRows":0,"insertId":0,"serverStatus":2,"warningCount":0,"message":"\u0000","protocol41":true,"changedRows":0}
+
+2017-11-9  17:59:0  
+数据已插入:
+{"fieldCount":0,"affectedRows":0,"insertId":0,"serverStatus":2,"warningCount":0,"message":"\u0000","protocol41":true,"changedRows":0}
+
+2017-11-9  17:59:0  
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"\u0000","protocol41":true,"changedRows":0}
+
+2017-11-9  17:59:0  关闭连接池!
+
