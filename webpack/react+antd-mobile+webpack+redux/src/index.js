@@ -9,10 +9,10 @@ import reducers from './reducer/reducer';
 
 const store = createStore(reducers);
 
-import './index.scss'
+import './index.scss';
+import './lib/CSS/reset.less';
 
 import Home from './components/home/home';
-import Mine from './components/mine/mine';
 
 const Routers=()=>{
 	return (
@@ -20,7 +20,6 @@ const Routers=()=>{
 			<Router>
 				<div className="routes">
 					<Route exact path="/" component={Home} />
-					<Route exact path="/mine" component={Mine} />
 				</div>
 			</Router>
 		</Provider>

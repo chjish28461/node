@@ -8,7 +8,15 @@ export default class Header extends React.Component{
 	render(){
 		return (
 			<header id="header">
-				我是头部
+				<nav>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</nav>
+				<div className="search"></div>
 			</header>
 		)
 	}
