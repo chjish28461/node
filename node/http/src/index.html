@@ -6,7 +6,7 @@
 		<script src="lib/jquery-2.2.3.min.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
-		<div id="text">服务器实例</div>
+		<div id="text">卖橙子了</div>
 		<script type="text/javascript">
 			let data={"name":"chenyang","age":24};
 			$.ajax({
@@ -17,10 +17,10 @@
 					console.log(res);
 				}
 			});
-//			//使用fetch发送get请求
-//			fetch('/api/get_all_users').then((res)=>res.json()).then((res)=>{
-//				console.log(res);
-//			})
+			// 使用fetch发送get请求
+			// fetch('/api/get_all_users').then((res)=>res.json()).then((res)=>{
+			// 	console.log(res);
+			// })
 			//使用fetch发送post请求
 			fetch('/api/get_all_users',{
 				method: 'post',
