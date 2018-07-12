@@ -49,7 +49,7 @@ class Postman {
         html2 += `<div class="main" name="${ele.attr("name")}">
 					<div class="main1">
 						<div class="info">
-							<div class="method">${ele.attr("method")}</div>
+							<div class="method">${ele.attr("method").toUpperCase()}</div>
 							<div class="url">${ele.attr("Url")}</div>
 							<div class="btn">
 								<button>Send</button>

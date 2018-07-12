@@ -127,6 +127,7 @@ li {
   flex: 1;
   line-height: 34px;
   text-align: center;
+  color: #f5b750;
 }
 .tags .content .main .main1 .info .url {
   flex: 17;
