@@ -147,6 +147,7 @@ li {
   border-bottom-right-radius: 8px;
   background: #3299ff;
   color: #fff;
+  cursor: pointer;
 }
 .tags .content .main .main2 {
   width: 98%;
