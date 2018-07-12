@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+}
+.hide{
+    display: none;
+}
+.interfaceList{
+    width: 200px;
+    background: #f3f3f3;
+    min-height: 100vh;
+    float: left;
+    .title{
+        text-indent: 10px;
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        background: #dddddd;
+        .refresh{
+            float: right;
+            height: 100%;
+            background: url(../img/refresh.png) no-repeat center center;
+            width: 36px;
+            cursor: pointer;
+        }
+    }
+    .list{
+        width: 100%;
+        height: calc(~'100vh - 32px');
+        overflow: auto;
+        .item{
+            &.active{
+                background: #3299ff;
+                .name{
+                    color: #fff;
+                }
+            }
+            width: 100%;
+            height: 30px;
+            display: flex;
+            cursor: pointer;
+            .method{
+                flex: 1;
+                line-height: 30px;
+                text-align: center;
+                color: #f5b750;
+                font-weight: bolder;
+                font-size: 12px;
+            }
+            .name{
+                flex: 4;
+                line-height: 30px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 12px;
+            }
+        }
+    }
+}
+.tags{
+    width: calc( ~"100% - 200px" );
+    min-height: 100vh;
+    float: right;
+    .title{
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        background: #f1f1f1;
+        .tab{
+            &.active{
+                background: #fff;
+            }
+            background: #ebebeb;
+            height: 32px;
+            float: left;
+            cursor: pointer;
+            .method{
+                font-size: 10px;
+                color: #f5b750;
+                padding: 0 3px;
+            }
+            .name{
+                font-size: 14px;
+                padding: 0 2px;
+            }
+            .close{
+                font-size: 14px;
+                font-weight: bolder;
+                cursor: pointer;
+                padding: 4px;
+                &:hover{
+                    font-size: 18px;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    .content{
+        width: 100%;
+        height: calc(~'100vh - 32px');
+        overflow: auto;
+        .main{
+            padding-top: 10px;
+            width: 100%;
+            min-height: 100%;
+            box-sizing: border-box;
+            .main1{
+                width: 98%;
+                margin: 0 auto;
+                .info{
+                    width: 100%;
+                    display: flex;
+                    height: 34px;
+                    border:1px solid #cdcdcd;
+                    border-radius: 8px;
+                    background: #f1f1f1;
+                    .method{
+                        flex: 1;
+                        line-height: 34px;
+                        text-align: center;
+                    }
+                    .url{
+                        flex: 17;
+                        line-height: 34px;
+                        border-left: 1px solid #cdcdcd;
+                        text-indent: 10px;
+                    }
+                    .btn{
+                        flex: 1;
+                        // line-height: 34px;
+                        button{
+                            width: 100%;
+                            height: 100%;
+                            vertical-align: middle;
+                            border: none;
+                            border-top-right-radius: 8px;
+                            border-bottom-right-radius: 8px;
+                            background: #3299ff;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+            .main2{
+                width: 98%;
+                margin: 0 auto;
+                .header{
+                    line-height: 50px;
+                }
+                .data{
+                    width: 100%;
+                    textarea{
+                        width: 100%;
+                        height: 270px;
+                        border-radius: 8px;
+                        padding: 8px;
+                        font-size: 16px;
+                        box-sizing: border-box;
+                        resize:none;
+                        &:focus{
+                            outline: none;
+                        }
+                    }
+                }
+            }
+            .main3{
+                width: 98%;
+                margin: 0 auto;
+                .tips{
+                    line-height: 50px;
+                }
+                .response{
+                    width: 100%;
+                    height: 300px;
+                    border:1px solid #cdcdcd;
+                    border-radius: 8px;
+                    box-sizing: border-box;
+                    padding: 8px;
+                }
+            }
+        }
+    }
+}

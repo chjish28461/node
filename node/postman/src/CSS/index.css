@@ -1,0 +1,186 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+.hide {
+  display: none;
+}
+.interfaceList {
+  width: 200px;
+  background: #f3f3f3;
+  min-height: 100vh;
+  float: left;
+}
+.interfaceList .title {
+  text-indent: 10px;
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  background: #dddddd;
+}
+.interfaceList .title .refresh {
+  float: right;
+  height: 100%;
+  background: url(../img/refresh.png) no-repeat center center;
+  width: 36px;
+  cursor: pointer;
+}
+.interfaceList .list {
+  width: 100%;
+  height: calc(100vh - 32px);
+  overflow: auto;
+}
+.interfaceList .list .item {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  cursor: pointer;
+}
+.interfaceList .list .item.active {
+  background: #3299ff;
+}
+.interfaceList .list .item.active .name {
+  color: #fff;
+}
+.interfaceList .list .item .method {
+  flex: 1;
+  line-height: 30px;
+  text-align: center;
+  color: #f5b750;
+  font-weight: bolder;
+  font-size: 12px;
+}
+.interfaceList .list .item .name {
+  flex: 4;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.tags {
+  width: calc(100% - 200px);
+  min-height: 100vh;
+  float: right;
+}
+.tags .title {
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  background: #f1f1f1;
+}
+.tags .title .tab {
+  background: #ebebeb;
+  height: 32px;
+  float: left;
+  cursor: pointer;
+}
+.tags .title .tab.active {
+  background: #fff;
+}
+.tags .title .tab .method {
+  font-size: 10px;
+  color: #f5b750;
+  padding: 0 3px;
+}
+.tags .title .tab .name {
+  font-size: 14px;
+  padding: 0 2px;
+}
+.tags .title .tab .close {
+  font-size: 14px;
+  font-weight: bolder;
+  cursor: pointer;
+  padding: 4px;
+}
+.tags .title .tab .close:hover {
+  font-size: 18px;
+  vertical-align: middle;
+}
+.tags .content {
+  width: 100%;
+  height: calc(100vh - 32px);
+  overflow: auto;
+}
+.tags .content .main {
+  padding-top: 10px;
+  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+.tags .content .main .main1 {
+  width: 98%;
+  margin: 0 auto;
+}
+.tags .content .main .main1 .info {
+  width: 100%;
+  display: flex;
+  height: 34px;
+  border: 1px solid #cdcdcd;
+  border-radius: 8px;
+  background: #f1f1f1;
+}
+.tags .content .main .main1 .info .method {
+  flex: 1;
+  line-height: 34px;
+  text-align: center;
+}
+.tags .content .main .main1 .info .url {
+  flex: 17;
+  line-height: 34px;
+  border-left: 1px solid #cdcdcd;
+  text-indent: 10px;
+}
+.tags .content .main .main1 .info .btn {
+  flex: 1;
+}
+.tags .content .main .main1 .info .btn button {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  border: none;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: #3299ff;
+  color: #fff;
+}
+.tags .content .main .main2 {
+  width: 98%;
+  margin: 0 auto;
+}
+.tags .content .main .main2 .header {
+  line-height: 50px;
+}
+.tags .content .main .main2 .data {
+  width: 100%;
+}
+.tags .content .main .main2 .data textarea {
+  width: 100%;
+  height: 270px;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  resize: none;
+}
+.tags .content .main .main2 .data textarea:focus {
+  outline: none;
+}
+.tags .content .main .main3 {
+  width: 98%;
+  margin: 0 auto;
+}
+.tags .content .main .main3 .tips {
+  line-height: 50px;
+}
+.tags .content .main .main3 .response {
+  width: 100%;
+  height: 300px;
+  border: 1px solid #cdcdcd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 8px;
+}
