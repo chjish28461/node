@@ -24,11 +24,11 @@ class Home extends React.Component{
 		})
 	}
 	click=()=>{
-//		let nowTime=new Date().getTime();
-//		if(nowTime-this.dbClickTime<300){
-			this.refs.audio.click();
-//		}
-//		this.dbClickTime=nowTime;
+		// let nowTime=new Date().getTime();
+		// if(nowTime-this.dbClickTime<300){
+		// 	this.refs.audio.click();
+		// }
+		// this.dbClickTime=nowTime;
 	}
 	audioChange=()=>{
 		let files=this.refs.audio.files;
@@ -36,23 +36,23 @@ class Home extends React.Component{
 			var file = files[i];  
 		   	var url = URL.createObjectURL(file);  
 		   	let a=document.createElement("audio");
-		   	fetch("http://127.0.0.1/files://E:/虾米音乐/G.E.M.邓紫棋-泡沫.mp3",{
-		   		mode: "cors",
-		   	})
-		   	.then((res)=>{
-		   		console.log(res);
-//		   		a.src="E:/虾米音乐/G.E.M.邓紫棋-泡沫.mp3";
-//			   	a.controls="controls";
-//			   	document.querySelector("body").appendChild(a);
-		   	})
-		   	.catch((err)=>{
-		   		console.log(err);
-		   	})
+		   	// fetch("http://127.0.0.1/files://E:/虾米音乐/G.E.M.邓紫棋-泡沫.mp3",{
+		   	// 	mode: "cors",
+		   	// })
+		   	// .then((res)=>{
+		   	// 	console.log(res);
+		   	// 	a.src="E:/虾米音乐/G.E.M.邓紫棋-泡沫.mp3";
+			//    	a.controls="controls";
+			//    	document.querySelector("body").appendChild(a);
+		   	// })
+		   	// .catch((err)=>{
+		   	// 	console.log(err);
+		   	// })
 		}
 	}
 	render(){
-//		view发出action的唯一途径是dispatch，这是其中一种方法
-//		this.props.dispatch({type:"loaagin",username:this.username});
+		// view发出action的唯一途径是dispatch，这是其中一种方法
+		// this.props.dispatch({type:"loaagin",username:this.username});
 		return (
 			<div>
 				<content className="content">
