@@ -1,13 +1,20 @@
 $(function(){
+    var wid = document.body.clientWidth;
     var ox = document.body.clientWidth/2;
     var oy = document.body.clientHeight;
     var firework = new Firework();
-    window.onclick=function(e){
-        var e = e||window.event;
-        var endX = e.clientX;
-        var endY = e.clientY;
+    // window.onclick=function(e){
+    //     var e = e||window.event;
+    //     var endX = e.clientX;
+    //     var endY = e.clientY;
+    //     firework.move(endX,endY);
+    // };
+    // var randon = firework.randon;
+    var timer=setInterval(function(){
+        var endX = firework.randon(0.25*wid,0.75*wid);
+        var endY  = firework.randon(0.15*oy,0.3*oy);
         firework.move(endX,endY);
-    };
+    },1000*1.5)
     function Firework (){ }
     Firework.prototype.randon=function(min,max){//产生区间随机数函数
         return Math.floor(Math.random()*(max-min)+min);
