@@ -26,9 +26,9 @@ $(function(){
         $(dot).animate({
             top:endY,
             left:endX
-        },1000,"linear",function(){
+        },300,"linear",function(){
             $(this).remove();
-            var pieces = randon(50,80);
+            var pieces = randon(100,110);
             for(var i=0;i<pieces;i++){
                 that.piece(endX,endY);
             }
@@ -43,28 +43,29 @@ $(function(){
         piece.style.top = `${endY}px`;
         piece.style.left = `${endX}px`;
         document.getElementById("wrap").appendChild(piece);
-        var speedX = this.randon(2,20);
-        var speedY = this.randon(2,30);
+        var speedX = this.randon(1,25);
+        var speedY = this.randon(10,50);
         speedX = Math.random()>0.5?speedX:-speedX;
-        speedY = Math.random()>0.5?speedY:-speedY;
+        // speedY = Math.random()>0.5?speedY:-speedY;
+        speedY = -speedY;
         this.pieceMove(piece,endX,endY,speedX,speedY);
     }
     Firework.prototype.pieceMove=function(piece,endX,endY,speedX,speedY){//碎片运动函数
         var i=0;
         piece.timer = setInterval(function(){
             i++;
-            speedY +=2;//Y轴方向速度增加使烟花碎片做加速落体运动
+            speedY +=4;//Y轴方向速度增加使烟花碎片做加速落体运动
             if(Math.abs(speedX*i)>100||Math.abs(speedY*i)>200){ 
                 clearInterval(piece.timer);
                 document.getElementById("wrap").removeChild(piece);
             }
             $(piece).css("top",speedY*i+endY);
             $(piece).css("left",speedX*i+endX);
-        },80);
+        },200);
     }
     function triggerEvent(){
-        var endX = firework.randon(0.25*wid,0.75*wid);
-        var endY  = firework.randon(0.15*oy,0.3*oy);
+        var endX = firework.randon(0.45*wid,0.65*wid);
+        var endY  = firework.randon(0.25*oy,0.35*oy);
         firework.move(endX,endY);
     }
     triggerEvent();
