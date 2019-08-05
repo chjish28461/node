@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Altizure demo</title>
+    <!-- <link rel="stylesheet" href="./lib/CSS/reset.css"> -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #earth{
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    <div id="earth"></div>
+    <!-- <iframe src="https://www.altizure.cn/project-model?pid=5ca47325e5cfee35d69ad6e9&render=texture&campose=false" ></iframe> -->
+    <canvas id='ui' style="position: absolute; left: 0; top: 0; pointer-events: none"></canvas>
+    <script type="text/javascript" src="https://beta.altizure.cn/sdk"></script>
+    <script>
+        let info = {
+    "工程ID":"12345",
+    "点云项目PID":"5ca47325e5cfee35d69ad6e9",
+    "矩形列表":[
+        {
+            "矩形范围":{
+                "小号杆塔":"#001",
+                "大号杆塔":"#002"
+            },
+            "起始坐标":{
+                "lng":"",
+                "lat":""
+            },
+            "边长":{
+                "长":"",
+                "宽":""
+            }
+        }
+    ]
+}
+        let options = {
+            altizureApi: {
+                key: '7MkQf8UggsPaadvrlKALspJWZejZAJOLHn3cnIy'
+            },
+            renderItems: {
+                earth: true,
+                earthUseTexture: false,
+                featureInView: false,
+                orbitRing: false
+            }
+        }
+        let sandbox = new altizure.Sandbox('earth', options)
+        sandbox.add('AltizureProjectMarker', {
+            pid: '5ca47325e5cfee35d69ad6e9'
+        })
+        .then(function(m) {
+            const initCoord = {
+                lng:m.position.lng,
+                lat:m.position.lat
+            }
+            info.矩形列表[0].起始坐标=initCoord;
+            sandbox.camera.flyTo({
+            lng: m.position.lng,
+            lat: m.position.lat,
+            alt: 4000
+            }, 1)
+            let el = sandbox.domElement;
+            let coord = [];
+            el.addEventListener('mousedown', function (event) {
+                if (event.button === 0) { // left button
+                    let pt = sandbox.pick(event);
+                    if(coord.length<2){
+                        const obj=sandbox.window.fromLngLatAlt(pt); 
+                        coord.push(obj);
+                        if( coord.length==2 ){
+                            alert("第二次点击，稍后会在控制台打印出点坐标信息！")
+                            cal(coord)
+                        }
+                    }
+                }
+            }, false)
+        });
+        function cal(coord){
+            const arr1 = coord[0];
+            const arr2 = coord[1];
+            const coord1={
+                x:arr1.x+20,
+                y:arr1.y+20
+            }
+            const coord2={
+                x:arr1.x+20,
+                y:arr1.y-20
+            }
+            const coord3={
+                x:arr2.x-20,
+                y:arr2.y+20
+            }
+            const coord4={
+                x:arr2.x-20,
+                y:arr2.y-20
+            }
+            const length = coord3.x-coord1.x;
+            const width = coord1.y-coord2.y;
+            info.矩形列表[0].边长={
+                "长":length,
+                "宽":width
+            }
+            console.log(JSON.stringify(info));
+        }
+    </script>
+</body>
+</html>
