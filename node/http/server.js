@@ -1,6 +1,8 @@
 const path=require('path');
 const express=require('express');
 const APIUsers=require('./API/users');
+const send=require('./utils/mail');
+// send();
 //默认情况下，前端请求的参数req.body是undefined，当您使用body-parser和multer等身体分析中间件时，它会被填充。
 //以下示例显示如何使用身体分析中间件来填充req.body。
 const bodyParser = require('body-parser');
