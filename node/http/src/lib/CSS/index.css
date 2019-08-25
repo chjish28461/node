@@ -9,13 +9,17 @@ a{
 ul,li,dd,dt,ol{
     list-style: none;
 }
-.content{
-    text-align: center;
+#content{
+    /* text-align: center; */
     padding: 20px;
     width: 1000px;
     margin: 0 auto;
 }
 .header{
+    /* height: 50px; */
+    
+}
+nav{
     height: 50px;
     border: 1px solid #ededed;
 }
@@ -26,15 +30,23 @@ ul,li,dd,dt,ol{
     padding: 0 12px;
     border-right: 1px solid #ededed;
     line-height: 50px;
+    cursor: pointer;
+}
+.content{
+    text-align: left;
 }
 .footer{
     background: #f5f5f5;
     border:1px solid #ccc;
     height: 50px;
+    position: absolute;
+    bottom: 20px;
+    width: 1000px;
 }
 .footer .beian{
     height: 50px;
     line-height: 50px;
+    text-align: center;
 }
 .beian a{
     text-decoration: #ccc;
