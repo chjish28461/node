@@ -5,11 +5,11 @@ APIUsers.data=[
     { id: 300, name: '杨过', pass:'yg', age: 40, ico: '/imgs/2.jpg', en_name:'YangGuo', money:300 }
 ];
 APIUsers.api={
-	'/get_all_users':{
+	'/register':{
 		method:"get|post",
 		handle:function(req,res){
 			let result=APIUsers.data;
-			console.log(req.body.name);//req.body是接收到的前端参数
+			console.log(req.body);//req.body是接收到的前端参数
 			res.send(result);
 		}
 	}
