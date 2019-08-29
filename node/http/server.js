@@ -1,7 +1,7 @@
 const path=require('path');
 const express=require('express');
 const APIUsers=require('./API/users');
-const send=require('./utils/mail');
+const session = require('express-session');
 // send();
 //默认情况下，前端请求的参数req.body是undefined，当您使用body-parser和multer等身体分析中间件时，它会被填充。
 //以下示例显示如何使用身体分析中间件来填充req.body。
@@ -10,6 +10,13 @@ const multer = require('multer'); // v1.0.5
 const upload = multer(); // for parsing multipart/form-data
 
 const app=express();
+const sessionConfig = {
+	secret: 'session',
+	cookie:{
+		maxAge: 1000*60*30
+	}
+}
+app.use(session(sessionConfig));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 //指定静态资源目录

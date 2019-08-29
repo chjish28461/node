@@ -1,3 +1,5 @@
+const utils = require("../utils");
+const emailUtils = require("../utils/email");
 let APIUsers={};
 APIUsers.data=[
     { id: 100, name: '张三丰', pass:'zsf', age: 20, ico:'/imgs/0.jpg', en_name:'ZhangSanFeng', money:100 },
@@ -6,11 +8,33 @@ APIUsers.data=[
 ];
 APIUsers.api={
 	'/register':{
-		method:"get|post",
+		method:"post",
 		handle:function(req,res){
-			let result=APIUsers.data;
-			console.log(req.body);//req.body是接收到的前端参数
-			res.send(result);
+            const { username, psd, email, code } = req.body;
+            console.log(req.body);//req.body是接收到的前端参数
+            if(code===req.session.code){
+                res.send({success:1});//注册成功
+            }else{
+                res.send({success:0});//注册失败
+            }
+		}
+    },    
+    '/get_code':{
+		method:"post",
+		handle:function(req,res){
+            const { email } = req.body;
+            console.log(req.body);//req.body是接收到的前端参数
+            let code = "";
+            for(let i=0,len=4;i<len;i++){
+                code+=utils.random();
+            }
+            req.session.code = code;
+            const mes = {
+                to:email,
+                text:code
+            }
+            emailUtils.send(emailUtils.message(mes));
+			res.send({success:1});
 		}
 	}
 }
