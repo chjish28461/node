@@ -1,24 +1,85 @@
 const utils = require("../utils");
 const emailUtils = require("../utils/email");
+const mysql=require('../SQL/mysql');//mysql工具类,包括链接池，更新mysql，关闭链接池方法
+const moment=require('moment');//转换时间对象为需要的格式工具
+const dateFormat = "YYYY-MM-DD HH:mm:ss";
+let mysqlUtil=new mysql({
+    'host':'47.107.142.25',
+    'user':'root',
+    'password':'Chen856856',
+    'database':'Test'
+});
+// //链接mysql
+mysqlUtil.connectMysql();
 let APIUsers={};
-APIUsers.data=[
-    { id: 100, name: '张三丰', pass:'zsf', age: 20, ico:'/imgs/0.jpg', en_name:'ZhangSanFeng', money:100 },
-    { id: 200, name: '许文强', pass:'xwq', age: 30, ico: '/imgs/1.jpg', en_name:'XueWenQiang', money:200 },
-    { id: 300, name: '杨过', pass:'yg', age: 40, ico: '/imgs/2.jpg', en_name:'YangGuo', money:300 }
-];
 APIUsers.api={
 	'/register':{
 		method:"post",
 		handle:function(req,res){
-            const { username, psd, email, code } = req.body;
-            console.log(req.body);//req.body是接收到的前端参数
-            if(code===req.session.code){
-                res.send({success:1});//注册成功
-            }else{
+            try{
+                const { username, psd, email, code } = req.body;
+                console.log(req.body);//req.body是接收到的前端参数
+                if(code===req.session.code){
+                    if(!username||!psd||!email||!code){
+                        res.send({success:0});//注册失败
+                        return ;
+                    }
+                    mysqlUtil.updataMysql(["select * from Users"],(data)=>{
+                        for(let i=0,len=data.length;i<len;i++){
+                            const { 用户名, 密码 } = data[i];
+                            if(username===用户名){
+                                res.send({success:0,errMsg:"用户已存在!"});//注册失败
+                                return ;
+                            }
+                        }
+                        const sql = [
+                            `insert into Users (ID,用户名,邮箱,密码,验证码,注册时间) values (1,"${username}","${email}","${psd}","${code}","${moment().format(dateFormat)}");`,
+                        ];
+                        mysqlUtil.updataMysql(sql,()=>{
+                            res.send({success:1});//注册成功
+                        },()=>{
+                            res.send({success:0});//注册失败
+                        });
+                    },err=>{
+                        res.send({success:0,msg:"数据库错误"});//注册失败
+                    })
+                }else{
+                    console.log("验证码错误");
+                    res.send({success:0});//注册失败
+                }
+            }catch(err){
+                console.log(err);
                 res.send({success:0});//注册失败
             }
 		}
-    },    
+    }, 
+    '/login':{
+		method:"post",
+		handle:function(req,res){
+            const { username, psd } = req.body;
+            // console.log(req.body);//req.body是接收到的前端参数
+            const sql = ["select * from Users"];
+            mysqlUtil.updataMysql(sql,(data)=>{
+                console.log("res="+data);
+                let flag = false;
+                for(let i=0,len=data.length;i<len;i++){
+                    const { 用户名, 密码 } = data[i];
+                    if(username===用户名&&psd===密码){
+                        res.send({success:1});
+                        flag = true;
+                        break;
+                        return ;
+                    }
+                }
+                if(!flag){
+                    res.send({success:0});
+                }
+            },(err)=>{
+                console.log(err);
+                res.send({success:0});
+            });
+		}
+	},   
     '/get_code':{
 		method:"post",
 		handle:function(req,res){

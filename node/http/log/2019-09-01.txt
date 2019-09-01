@@ -1,0 +1,136 @@
+2019-09-01 14:10:26链接mysql成功!
+
+2019-09-01 14:16:22链接mysql成功!
+
+2019-09-01 14:20:16链接mysql成功!
+
+2019-09-01 14:22:23链接mysql成功!
+
+2019-09-01 14:24:07链接mysql成功!
+
+2019-09-01 14:27:40链接mysql成功!
+
+2019-09-01 14:29:07链接mysql成功!
+
+2019-09-01 14:30:28链接mysql成功!
+
+2019-09-01 14:32:16链接mysql成功!
+
+2019-09-01 14:32:48
+[SELECT ERROR]
+ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '",chjish28461@163.com,chen123456,9026,2019-09-01 14:32:48)' at line 1
+
+2019-09-01 14:34:21链接mysql成功!
+
+2019-09-01 14:34:55
+[SELECT ERROR]
+ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '@163.com,chen123456,0010,2019-09-01 14:34:55)' at line 1
+
+2019-09-01 14:35:52链接mysql成功!
+
+2019-09-01 14:36:33
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 14:43:21链接mysql成功!
+
+2019-09-01 14:54:20链接mysql成功!
+
+2019-09-01 14:56:07
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 14:56:53
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 14:59:01
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 15:13:23
+[SELECT ERROR]
+read ECONNRESET
+
+2019-09-01 15:13:23
+[SELECT ERROR]
+read ECONNRESET
+
+2019-09-01 15:13:23
+[SELECT ERROR]
+read ECONNRESET
+
+2019-09-01 15:13:23
+[SELECT ERROR]
+read ECONNRESET
+
+2019-09-01 15:15:53链接mysql成功!
+
+2019-09-01 15:16:20
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 15:17:20链接mysql成功!
+
+2019-09-01 15:18:02
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 15:18:57
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 15:19:25链接mysql成功!
+
+2019-09-01 15:20:07
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":1,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 15:28:42链接mysql成功!
+
+2019-09-01 15:29:24
+[SELECT ERROR]
+ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's' at line 1
+
+2019-09-01 15:30:16链接mysql成功!
+
+2019-09-01 15:31:01
+[SELECT ERROR]
+ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's' at line 1
+
+2019-09-01 15:33:26链接mysql成功!
+
+2019-09-01 15:36:25链接mysql成功!
+
+2019-09-01 15:36:58
+[SELECT ERROR]
+ER_PARSE_ERROR: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 's' at line 1
+
+2019-09-01 15:38:22链接mysql成功!
+
+2019-09-01 15:38:48
+数据已插入:
+[]
+
+2019-09-01 15:40:56链接mysql成功!
+
+2019-09-01 15:42:59链接mysql成功!
+
+2019-09-01 15:43:20
+数据已插入:
+[{"ID":1,"用户名":"chjish28461","邮箱":"chjish28461@163.com","密码":"chen123456","验证码":"1932","注册时间":"2019-09-01 15:38:48"}]
+
+2019-09-01 15:46:09
+数据已插入:
+[{"ID":1,"用户名":"chjish28461","邮箱":"chjish28461@163.com","密码":"chen123456","验证码":"1932","注册时间":"2019-09-01 15:38:48"}]
+
+2019-09-01 15:46:09
+数据已插入:
+{"fieldCount":0,"affectedRows":1,"insertId":0,"serverStatus":2,"warningCount":0,"message":"","protocol41":true,"changedRows":0}
+
+2019-09-01 15:49:40链接mysql成功!
+
+2019-09-01 15:49:47
+数据已插入:
+[{"ID":1,"用户名":"chjish28461","邮箱":"chjish28461@163.com","密码":"chen123456","验证码":"1932","注册时间":"2019-09-01 15:38:48"},{"ID":1,"用户名":"ch28461","邮箱":"chjish28461@163.com","密码":"chen123456","验证码":"2715","注册时间":"2019-09-01 15:46:09"}]
+

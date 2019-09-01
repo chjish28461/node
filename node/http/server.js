@@ -8,7 +8,27 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const multer = require('multer'); // v1.0.5
 const upload = multer(); // for parsing multipart/form-data
+// const mysql=require('./SQL/mysql');//mysql工具类,包括链接池，更新mysql，关闭链接池方法
+// const dateUtils=require('./utils/dateUtils');//转换时间对象为需要的格式工具
 
+// let dateUtil=new dateUtils();
+// /*
+//  * {params}
+//  * host:mysql连接地址
+//  * user:用户名
+//  * password:用户密码
+//  * database:表名
+//  * */
+// let mysqlUtil=new mysql({
+//     'host':'47.107.142.25',
+//     'user':'root',
+//     'password':'Chen856856',
+//     'database':'Test'
+// });
+// //链接mysql
+// mysqlUtil.connectMysql();
+// //更新mysql，这里没有传入任何的sql语句，直接使用了默认的sql语句
+// mysqlUtil.updataMysql();
 const app=express();
 const sessionConfig = {
 	secret: 'session',
