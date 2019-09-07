@@ -1,9 +1,8 @@
 //这里面写sql操作
 const mysql=require('mysql');
-//node文件系统
-const fs=require('fs');
 // const dateUtils=require('../utils/dateUtils');//转换时间对象为需要的格式工具
 const moment=require('moment');//转换时间对象为需要的格式工具
+const logMes = require("../utils").logMes;
 const dateFormat = "YYYY-MM-DD HH:mm:ss";
 // let dateUtil=new dateUtils();
 //链接mysql
@@ -18,24 +17,32 @@ class mysqlUtil{
 		this.connectMysql.bind(this);
 		this.updataMysql.bind(this);
 		this.closeMysql.bind(this);
-	}
-	//链接mysql方法
-	connectMysql(){
 		this.connection = mysql.createConnection({
 		    'host':this.config.host,
 		    'user':this.config.user,
 		    'password':this.config.password,
-		    'database':this.config.database
+			'database':this.config.database,
+			useConnectionPooling: true,
 		});
-		this.connection.connect();
-		let logMes=`${moment().format(dateFormat)}链接mysql成功!\r\n\r\n`;
-		fs.appendFile(`./log/${moment().format(dateFormat).replace(/\s.*/g,"")}.txt`, logMes, 'utf8', function(err){
-			if(err) throw err;
-			else console.log('The logMes has been saved!')
+	}
+	//链接mysql方法
+	connectMysql(){
+		const { connection } = this;
+		clearTimeout(this.timer);
+		connection.connect((err)=>{
+			if(err) {
+				console.log(' Error when connecting to db  (DBERR001):', err);
+				this.timer=setTimeout(()=>this.connectMysql(), 2000);
+			}
 		});
+		// let mes=`${moment().format(dateFormat)}链接mysql成功!\r\n\r\n`;
+		// logMes( mes );
+		connection.on("error",()=>this.connectMysql());
 	}
 	//更新mysql方法
 	updataMysql(mysql,cb,errCb){
+		const { connection } = this;
+		// this.connectMysql();
 //		mysql是要执行的sql语句,这里是传入操作的sql语句，实际项目一般只会让传入几个固定参数
 		// let sql=mysql||[
 			//删除表
@@ -49,40 +56,31 @@ class mysqlUtil{
 		// ];
 		// for(let i=0,len=sql.length;i<len;i++){
 		// 	//循环执行传入的sql语句
-			this.connection.query(mysql[0],(err, res)=>{
-				console.log("执行sql")
-			    if(err){
-					//sql执行失败打印信息
-					errCb&&errCb(err)
-			        let logMes=`${moment().format(dateFormat)}\r\n[SELECT ERROR]\r\n${err.message}\r\n\r\n`;
-					fs.appendFile(`./log/${moment().format(dateFormat).replace(/\s.*/g,"")}.txt`, logMes, 'utf8', function(err){
-						if(err) throw err;
-						else console.log('The logMes has been saved!')
-					});
-			        // return;
-			    }else{
-					//打印sql执行结果
-					cb&&cb(res);
-			    	let logMes=`${moment().format(dateFormat)}\r\n数据已插入:\r\n${JSON.stringify(res)}\r\n\r\n`;
-					fs.appendFile(`./log/${moment().format(dateFormat).replace(/\s.*/g,"")}.txt`, logMes, 'utf8', function(err){
-						if(err) throw err;
-						else console.log('The logMes has been saved!')
-					});
-			    }
-			    // if(i==(len-1)){
-				// 	this.closeMysql();
-				// }
+			connection.query(mysql[0],(err, res)=>{
+				try{
+					if(err){
+						//sql执行失败打印信息
+						errCb&&errCb(err)
+						let mes=`${moment().format(dateFormat)}\r\n\r\n${err.message}\r\n\r\n`;
+						logMes( mes );
+					}else{
+						//打印sql执行结果
+						cb&&cb(res);
+						let mes=`${moment().format(dateFormat)}\r\n数据已执行:\r\n${JSON.stringify(res)}\r\n\r\n`;
+						logMes( mes );
+					}					
+				}catch(err){
+					logMes(err);
+				}
 			});
 		// }
 	}
 	//关闭连接池
 	closeMysql(){
-		this.connection.end();
-		let logMes=`${moment().format(dateFormat)}关闭连接池!\r\n\r\n`;
-		fs.appendFile(`./log/${moment().format(dateFormat).replace(/\s.*/g,"")}.txt`, logMes, 'utf8', function(err){
-			if(err) throw err;
-			else console.log('The logMes has been saved!')
-		});
+		const { connection } = this;
+		connection.end();
+		let mes=`${moment().format(dateFormat)}关闭连接池!\r\n\r\n`;
+		logMes( mes );
 	}
 }
 module.exports=mysqlUtil;
