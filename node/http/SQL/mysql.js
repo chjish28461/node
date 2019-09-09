@@ -2,6 +2,8 @@
 const mysql=require('mysql');
 // const dateUtils=require('../utils/dateUtils');//转换时间对象为需要的格式工具
 const moment=require('moment');//转换时间对象为需要的格式工具
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 const logMes = require("../utils").logMes;
 const dateFormat = "YYYY-MM-DD HH:mm:ss";
 // let dateUtil=new dateUtils();
@@ -17,18 +19,27 @@ class mysqlUtil{
 		this.connectMysql.bind(this);
 		this.updataMysql.bind(this);
 		this.closeMysql.bind(this);
-		this.connection = mysql.createConnection({
+		const sessionConfig = {
+			secret: 'session',
+			cookie:{
+				maxAge: 1000*60*30
+			}
+		}
+		const options = {
 		    'host':this.config.host,
 		    'user':this.config.user,
 		    'password':this.config.password,
 			'database':this.config.database,
 			useConnectionPooling: true,
-		});
+		};
+		this.connection = mysql.createConnection(options);
+		this.sessionStore = new MySQLStore(options)
 	}
 	//链接mysql方法
 	connectMysql(){
 		const { connection } = this;
-		clearTimeout(this.timer);
+		if(this.timer)
+			clearTimeout(this.timer);
 		connection.connect((err)=>{
 			if(err) {
 				console.log(' Error when connecting to db  (DBERR001):', err);
@@ -42,20 +53,7 @@ class mysqlUtil{
 	//更新mysql方法
 	updataMysql(mysql,cb,errCb){
 		const { connection } = this;
-		// this.connectMysql();
 //		mysql是要执行的sql语句,这里是传入操作的sql语句，实际项目一般只会让传入几个固定参数
-		// let sql=mysql||[
-			//删除表
-			// 'drop table student',
-			// //创建表
-			// 'CREATE TABLE student (自动编号 INT,学号 VARCHAR (10),姓名 VARCHAR (10),课程编号 VARCHAR (10),课程名称 VARCHAR (10),分数 INT)',
-			// //往表中插入数据
-			// // 'CREATE TABLE student (自动编号 INT,学号 VARCHAR (10),姓名 VARCHAR (10),课程编号 VARCHAR (10),课程名称 VARCHAR (10),分数 INT)',
-			// //往表中插入数据
-			// 'insert into student (自动编号,学号,姓名,课程编号,课程名称,分数) values (1,"2005001","张三","0001","数学",69);',
-		// ];
-		// for(let i=0,len=sql.length;i<len;i++){
-		// 	//循环执行传入的sql语句
 			connection.query(mysql[0],(err, res)=>{
 				try{
 					if(err){
@@ -73,7 +71,6 @@ class mysqlUtil{
 					logMes(err);
 				}
 			});
-		// }
 	}
 	//关闭连接池
 	closeMysql(){
