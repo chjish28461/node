@@ -1,6 +1,8 @@
-var bunyan = require('bunyan');
-var nodemailer = require('nodemailer');
+const bunyan = require('bunyan');
+const nodemailer = require('nodemailer');
+const utils = require("./index");
 
+const { logMes,loginEamilCodeMsg } = utils;
 var transporter = nodemailer.createTransport({
   service: 'QQ',
   auth: {
@@ -43,16 +45,18 @@ function message ({to,subject,text,watchHtml}) {
   }
 };
 
-const send = (mes)=>{
-  console.log('Send Mail');
+const send = (mes,cb,err)=>{
   transporter.sendMail(mes, (error, info) => {
     if (error) {
         console.log('Error occurred');
         console.log(error.message);
+        loginEamilCodeMsg("验证码发送失败!");
+        loginEamilCodeMsg(error.message);
         return;
     }
-    console.log('Message sent successfully!');
+    loginEamilCodeErrMsg('验证码发送成功!')
     // console.log('Server responded with "%s"', info.response);
+    console.log("验证码发送成功!")
     transporter.close();
   });
 }

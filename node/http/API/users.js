@@ -3,13 +3,15 @@ const emailUtils = require("../utils/email");
 const mysql=require('../SQL/mysql');//mysql工具类,包括链接池，更新mysql，关闭链接池方法
 const moment=require('moment');//转换时间对象为需要的格式工具
 const dateFormat = "YYYY-MM-DD HH:mm:ss";
+const { logMes, loginEamilCodeErrMsg } = utils;
 let mysqlUtil=new mysql({
     'host':'47.107.142.25',
     'user':'root',
     'password':'Chen856856',
-    'database':'Test'
+    'database':'Test',
+    useConnectionPooling: true
 });
-// //链接mysql
+//连接数据库
 mysqlUtil.connectMysql();
 let APIUsers={};
 APIUsers.api={
@@ -18,17 +20,18 @@ APIUsers.api={
 		handle:function(req,res){
             try{
                 const { username, psd, email, code } = req.body;
-                console.log(req.body);//req.body是接收到的前端参数
-                if(code===req.session.code){
+                if(code===req.session.code&&email===req.session.email){
                     if(!username||!psd||!email||!code){
+                        logMes("用户名:"+username+"未填写注册信息注册失败!");
                         res.send({success:0});//注册失败
                         return ;
                     }
-                    mysqlUtil.updataMysql(["select * from Users"],(data)=>{
+                    return mysqlUtil.updataMysql(["select * from Users"],(data)=>{
                         for(let i=0,len=data.length;i<len;i++){
                             const { 用户名, 密码 } = data[i];
                             if(username===用户名){
-                                res.send({success:0,errMsg:"用户已存在!"});//注册失败
+                                logMes("用户名:"+username+"注册失败,用户已存在!");
+                                res.send({success:0,msg:"用户名已存在!"});//注册失败
                                 return ;
                             }
                         }
@@ -41,15 +44,17 @@ APIUsers.api={
                             res.send({success:0});//注册失败
                         });
                     },err=>{
-                        res.send({success:0,msg:"数据库错误"});//注册失败
+                        logMes("用户名:"+username+":"+err);
+                        logMes("用户名:"+username+"注册失败!");
+                        res.send({success:0,msg:"未知错误!"});//注册失败
                     })
                 }else{
-                    console.log("验证码错误");
-                    res.send({success:0});//注册失败
+                    logMes("用户名:"+username+"验证码错误!");
+                    res.send({success:0,msg:"验证码错误!"});//注册失败
                 }
             }catch(err){
-                console.log(err);
-                res.send({success:0});//注册失败
+                logMes(err);
+                res.send({success:0,msg:"服务器未知错误,请重试或刷新页面!"});//注册失败
             }
 		}
     }, 
@@ -60,7 +65,7 @@ APIUsers.api={
             // console.log(req.body);//req.body是接收到的前端参数
             const sql = ["select * from Users"];
             mysqlUtil.updataMysql(sql,(data)=>{
-                console.log("res="+data);
+                logMes("用户:"+username+"试图登录!");
                 let flag = false;
                 for(let i=0,len=data.length;i<len;i++){
                     const { 用户名, 密码 } = data[i];
@@ -68,14 +73,14 @@ APIUsers.api={
                         res.send({success:1});
                         flag = true;
                         break;
-                        return ;
                     }
                 }
                 if(!flag){
-                    res.send({success:0});
+                    logMes("用户:"+username+"登录失败，用户名或密码错误!");
+                    res.send({success:0,msg:"用户名或密码错误!"});
                 }
             },(err)=>{
-                console.log(err);
+                logMes(err);
                 res.send({success:0});
             });
 		}
@@ -84,18 +89,18 @@ APIUsers.api={
 		method:"post",
 		handle:function(req,res){
             const { email } = req.body;
-            console.log(req.body);//req.body是接收到的前端参数
             let code = "";
             for(let i=0,len=4;i<len;i++){
                 code+=utils.random();
             }
             req.session.code = code;
+            req.session.email = email;
             const mes = {
                 to:email,
                 text:code
             }
             emailUtils.send(emailUtils.message(mes));
-			res.send({success:1});
+            res.send({success:1})
 		}
 	}
 }
