@@ -1,0 +1,84 @@
+用户:chjish28461试图登录!2019-09-19 11:56:11
+数据已执行:
+[{"ID":1,"用户名":"chjish28461","邮箱":"chjish28461@163.com","密码":"chen123456","验证码":"1932","注册时间":"2019-09-01 15:38:48"},{"ID":1,"用户名":"ch28461","邮箱":"chjish28461@163.com","密码":"chen123456","验证码":"2715","注册时间":"2019-09-01 15:46:09"},{"ID":1,"用户名":"jish28461","邮箱":"chjish28461@163.com","密码":"chen123456","验证码":"2141","注册时间":"2019-09-04 21:29:46"}]
+
+Error: read ECONNRESET2019-09-19 12:25:31
+
+read ECONNRESET
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:26:38
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:28:04
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:28:50
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:05
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:07
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:08
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:11
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:13
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:15
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:50
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:52
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:54
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:32:56
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:33:48
+
+Cannot enqueue Query after fatal error.
+
+2019-09-19 12:33:49
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.Error: Cannot enqueue Query after fatal error.2019-09-19 12:33:51
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.2019-09-19 12:33:52
+
+Cannot enqueue Query after fatal error.
+
+2019-09-19 12:33:54
+
+Cannot enqueue Query after fatal error.
+
+Error: Cannot enqueue Query after fatal error.Error: Cannot enqueue Query after fatal error.2019-09-19 12:33:56
+
+Cannot enqueue Query after fatal error.
+
