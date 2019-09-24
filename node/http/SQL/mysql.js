@@ -25,22 +25,22 @@ class mysqlUtil{
 				maxAge: 1000*60*30
 			}
 		}
-		const options = {
+		this.options = {
 		    'host':this.config.host,
 		    'user':this.config.user,
 		    'password':this.config.password,
 			'database':this.config.database,
 			useConnectionPooling: true,
 		};
-		this.connection = mysql.createConnection(options);
-		this.sessionStore = new MySQLStore(options)
 	}
 	//链接mysql方法
 	connectMysql(){
-		const { connection } = this;
+		const { options } = this;
+		this.connection = mysql.createConnection(options);
+		this.sessionStore = new MySQLStore(options)
 		if(this.timer)
 			clearTimeout(this.timer);
-		connection.connect((err)=>{
+		this.connection.connect((err)=>{
 			if(err) {
 				console.log(' Error when connecting to db  (DBERR001):', err);
 				this.timer=setTimeout(()=>this.connectMysql(), 2000);
@@ -48,7 +48,7 @@ class mysqlUtil{
 		});
 		// let mes=`${moment().format(dateFormat)}链接mysql成功!\r\n\r\n`;
 		// logMes( mes );
-		connection.on("error",()=>this.connectMysql());
+		this.connection.on("error",()=>this.connectMysql());
 	}
 	//更新mysql方法
 	updataMysql(mysql,cb,errCb){
